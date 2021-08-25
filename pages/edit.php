@@ -1,3 +1,36 @@
+<?php
+include_once("../config/database.php");
+if(isset($_POST['update']))
+{    
+    $id = $_POST['id'];
+    $judul=$_POST['judul'];
+    $penulis=$_POST['penulis'];
+    $penerbit=$_POST['penerbit'];
+    $tahun_terbit=$_POST['tahun_terbit'];
+    $tgl_terbit=$_POST['tgl_terbit'];
+    $halaman=$_POST['halaman'];
+    $result = mysqli_query($mysqli, "UPDATE buku SET judul='$judul',penulis='$penulis',penerbit='$penerbit',tahun_terbit='$tahun_terbit',tgl_terbit='$tgl_terbit',halaman='$halaman' WHERE id=$id");
+    ?>
+     <script type="text/javascript">
+     window.location = "../index.php";
+     </script>      
+  <?php
+}
+?>
+
+<?php
+$id = $_GET['id'];
+$result = mysqli_query($mysqli, "SELECT * FROM buku WHERE id=$id"); 
+while($buku_data = mysqli_fetch_array($result))
+{
+    $judul = $buku_data['judul'];
+    $penulis = $buku_data['penulis'];
+    $penerbit = $buku_data['penerbit'];
+    $tahun_terbit = $buku_data['tahun_terbit'];
+    $tgl_terbit = $buku_data['tgl_terbit'];
+    $halaman = $buku_data['halaman'];
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -31,71 +64,76 @@
           <div class="shadow-sm">
             <div class="card">
               <div class="card-body">
-                <form action="post">
+                <form name="update_buku" method="post" action="edit.php">
                   <label for="judul">Judul Buku</label>
                   <div class="form-group">
                     <input
                       id="judul"
+                      value="<?php echo $judul;?>"
                       name="judul"
                       placeholder="Masukan Judul Buku"
                       type="text"
                       class="form-control"
                     />
                   </div>
-                  <label for="judul">Nama Penulis</label>
+                  <label for="penulis">Nama Penulis</label>
                   <div class="form-group">
                     <input
-                      id="judul"
-                      name="judul"
+                      id="penulis"
+                      value="<?php echo $penulis;?>"
+                      name="penulis"
                       placeholder="Masukan Nama Penulis"
                       type="text"
                       class="form-control"
                     />
                   </div>
-                  <label for="judul">Penerbit</label>
+                  <label for="penerbit">Penerbit</label>
                   <div class="form-group">
                     <input
-                      id="judul"
-                      name="judul"
+                      value="<?php echo $penerbit;?>"
+                      id="penerbit"
+                      name="penerbit "
                       placeholder="Masukan Penerbit"
                       type="text"
                       class="form-control"
                     />
                   </div>
-                  <label for="judul">Tahun Terbit</label>
+                  <label for="tahun_terbit">Tahun Terbit</label>
                   <div class="form-group">
                     <input
-                      id="judul"
-                      name="judul"
+                      id="tahun_terbit"
+                      value="<?php echo $tahun_terbit;?>"
+                      name="tahun_terbit"
                       placeholder="Masukan Tahun Terbit"
                       type="text"
                       class="form-control"
                     />
                   </div>
-                  <label for="judul">Tanggal Terbit</label>
+                  <label for="tgl_terbit">Tanggal Terbit</label>
                   <div class="form-group">
                     <input
-                      id="judul"
-                      name="judul"
+                      id="tgl_terbit"
+                      value="<?php echo $tgl_terbit;?>"
+                      name="tgl_terbit"
                       placeholder="Masukan Tanggal Terbit"
                       type="text"
                       class="form-control"
                     />
                   </div>
-                  <label for="judul">Halaman Buku</label>
+                  <label for="halaman">Halaman Buku</label>
                   <div class="form-group">
                     <input
-                      id="judul"
-                      name="judul"
+                      id="halaman"
+                      value="<?php echo $halaman;?>"
+                      name="halaman"
                       placeholder="Masukan Jumlah Halaman"
                       type="text"
                       class="form-control"
                     />
                   </div>
-                  <a class="mt-3" href="#">
-                    <button class="btn btn-primary mb-3">Simpan Data</button></a
-                  >
-                  <a href="../index.html"
+                  <input type="hidden" name="id" value=<?php echo $_GET['id'];?>/>
+                   <input type="submit" class="btn mb-3 btn-primary" value="Edit Data">
+                  <a href="../index.php"
                     ><button type="button" class="mb-3 btn btn-danger">
                       Batal
                     </button></a

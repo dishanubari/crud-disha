@@ -31,88 +31,106 @@
           <div class="shadow-sm">
             <div class="card">
               <div class="card-body">
-                <form action="post">
+                <form action="add.php" method="post" name="form1">
                   <label for="judul">Judul Buku</label>
                   <div class="form-group">
                     <input
                       id="judul"
-                      value="Bumi"
                       name="judul"
                       placeholder="Masukan Judul Buku"
                       type="text"
                       class="form-control"
+                      required
                     />
                   </div>
-                  <label for="judul">Nama Penulis</label>
+                  <label for="penulis">Nama Penulis</label>
                   <div class="form-group">
                     <input
-                      id="judul"
-                      value="Tere Liye"
-                      name="judul"
+                      id="penulis"
+                      name="penulis"
                       placeholder="Masukan Nama Penulis"
                       type="text"
                       class="form-control"
+                      required
                     />
                   </div>
-                  <label for="judul">Penerbit</label>
+                  <label for="penerbit">Penerbit</label>
                   <div class="form-group">
                     <input
-                      value="Gramedia"
-                      id="judul"
-                      name="judul"
+                      id="penerbit"
+                      name="penerbit"
                       placeholder="Masukan Penerbit"
                       type="text"
                       class="form-control"
+                      required
                     />
                   </div>
-                  <label for="judul">Tahun Terbit</label>
+                  <label for="tahun_terbit">Tahun Terbit</label>
                   <div class="form-group">
                     <input
-                      id="judul"
-                      value="2014"
-                      name="judul"
+                      id="tahun_terbit"
+                      name="tahun_terbit"
                       placeholder="Masukan Tahun Terbit"
                       type="text"
                       class="form-control"
+                      required
                     />
                   </div>
-                  <label for="judul">Tanggal Terbit</label>
+                  <label for="tgl_terbit">Tanggal Terbit</label>
                   <div class="form-group">
                     <input
-                      id="judul"
-                      value="14 Januari"
-                      name="judul"
+                      id="tgl_terbit"
+                      name="tgl_terbit"
                       placeholder="Masukan Tanggal Terbit"
                       type="text"
                       class="form-control"
+                      required
                     />
                   </div>
-                  <label for="judul">Halaman Buku</label>
+                  <label for="halaman">Halaman Buku</label>
                   <div class="form-group">
                     <input
-                      id="judul"
-                      value="440"
-                      name="judul"
+                      id="halaman"
+                      name="halaman"
                       placeholder="Masukan Jumlah Halaman"
                       type="text"
                       class="form-control"
+                      required
                     />
                   </div>
-                  <a class="mt-3" href="#">
-                    <button class="btn btn-success mb-3">Edit Data</button></a
-                  >
-                  <a href="../index.html"
+               
+                    <button name="Simpan" type="submit" class="btn btn-primary mb-3">Simpan Data</button></a>
+                  
+                  <a href="../index.php"
                     ><button type="button" class="mb-3 btn btn-danger">
                       Batal
                     </button></a
                   >
                 </form>
+                <?php
+                    if(isset($_POST['Simpan'])) {
+                        $judul = $_POST['judul'];
+                        $penulis = $_POST['penulis'];
+                        $penerbit = $_POST['penerbit'];
+                        $tahun_terbit = $_POST['tahun_terbit'];
+                        $tgl_terbit = $_POST['tgl_terbit'];
+                        $halaman = $_POST['halaman'];
+                        include_once("../config/database.php");
+                        $result = mysqli_query($mysqli, "INSERT INTO buku(judul, penulis, penerbit, tahun_terbit, tgl_terbit, halaman) VALUES('$judul','$penulis','$penerbit','$tahun_terbit','$tgl_terbit','$halaman')");
+                       ?>
+                        <script type="text/javascript">
+                        window.location = "../index.php";
+                        </script>      
+                      <?php
+                    }
+                  ?>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
     <script src="./assets/js/app.js"></script>
     <script src="./assets/js/bootstrap.bundle.js"></script>
   </body>
