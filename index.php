@@ -62,13 +62,13 @@ $result = mysqli_query($mysqli, "SELECT * FROM buku ORDER BY id DESC");
                       echo "<td>".$buku_data['tgl_terbit']."</td>";    
                       echo "<td>".$buku_data['halaman']."</td>";    
                       echo "<td>".
-                        "<a href='edit.php?id=$buku_data[id]'>".
+                        "<a href='./pages/edit.php?id=$buku_data[id]'>".
                           "<button class=\"btn btn-success\">"."Edit"."</button>".
                      " </a>".
-                      " <a href='delete.php?id=$buku_data[id]'>".
+                      " <a href='./pages/delete.php?id=$buku_data[id]'>".
                           "<button class=\"btn btn-danger\">"."Hapus"."</button>".
                       "</a>".
-                      " <a href='delete.php?id=$buku_data[id]'>".
+                      " <a href='./pages/detail.php?id=$buku_data[id]'>".
                           "<button class=\"btn btn-warning\">"."Detail"."</button>".
                       "</a>".
                       "</td>".
