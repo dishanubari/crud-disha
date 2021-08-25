@@ -1,3 +1,10 @@
+<?php
+// Create database connection using config file
+include_once("./config/database.php");
+ 
+// Fetch all users data from database
+$result = mysqli_query($mysqli, "SELECT * FROM buku ORDER BY id DESC");
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -29,7 +36,7 @@
       <div class="shadow-sm">
         <div class="card">
           <div class="card-body">
-            <a href="./pages/add.html">
+            <a href="./pages/add.php">
               <button class="btn btn-primary mb-3">+ Tambah Data</button></a
             >
             <table class="table table-bordered table-striped table-hoover">
@@ -45,8 +52,31 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Bumi</td>
+             <?php 
+                while($buku_data = mysqli_fetch_array($result)) {         
+                      echo "<tr>";
+                      echo "<td>".$buku_data['judul']."</td>";
+                      echo "<td>".$buku_data['penulis']."</td>";
+                      echo "<td>".$buku_data['penerbit']."</td>";    
+                      echo "<td>".$buku_data['tahun_terbit']."</td>";    
+                      echo "<td>".$buku_data['tgl_terbit']."</td>";    
+                      echo "<td>".$buku_data['halaman']."</td>";    
+                      echo "<td>".
+                        "<a href='edit.php?id=$buku_data[id]'>".
+                          "<button class=\"btn btn-success\">"."Edit"."</button>".
+                     " </a>".
+                      " <a href='delete.php?id=$buku_data[id]'>".
+                          "<button class=\"btn btn-danger\">"."Hapus"."</button>".
+                      "</a>".
+                      " <a href='delete.php?id=$buku_data[id]'>".
+                          "<button class=\"btn btn-warning\">"."Detail"."</button>".
+                      "</a>".
+                      "</td>".
+                  "</tr>";        
+                   }
+              ?>
+                <!-- <tr> -->
+                  <!-- <td>Bumi</td>
                   <td>Tere Liye</td>
                   <td>Gramedia Pustaka Utama</td>
                   <td>2014</td>
@@ -62,8 +92,8 @@
                     <a href="./pages/detail.html">
                       <button class="btn btn-success">Lihat</button></a
                     >
-                  </td>
-                </tr>
+                  </td> -->
+                <!-- </tr> -->
               </tbody>
             </table>
           </div>

@@ -27,7 +27,7 @@
 
     <div class="container-sm mt-3">
       <div class="row d-flex justify-content-center">
-        <div class="col-lg-6">
+        <div class="col-lg-8">
           <div class="shadow-sm">
             <div class="card">
               <div class="card-body">

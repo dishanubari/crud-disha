@@ -1,3 +1,20 @@
+<?php
+include_once("../config/database.php");
+if(isset($_POST['update']))
+{    
+    $id = $_POST['id'];
+    
+    $name=$_POST['name'];
+    $mobile=$_POST['mobile'];
+    $email=$_POST['email'];
+        
+    // update user data
+    $result = mysqli_query($mysqli, "UPDATE users SET name='$name',email='$email',mobile='$mobile' WHERE id=$id");
+    
+    // Redirect to homepage to display updated user in list
+    header("Location: index.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -36,64 +53,70 @@
                   <div class="form-group">
                     <input
                       id="judul"
+                      value="Bumi"
                       name="judul"
                       placeholder="Masukan Judul Buku"
                       type="text"
                       class="form-control"
                     />
                   </div>
-                  <label for="judul">Nama Penulis</label>
+                  <label for="penulis">Nama Penulis</label>
                   <div class="form-group">
                     <input
-                      id="judul"
-                      name="judul"
+                      id="penulis"
+                      value="Tere Liye"
+                      name="penulis"
                       placeholder="Masukan Nama Penulis"
                       type="text"
                       class="form-control"
                     />
                   </div>
-                  <label for="judul">Penerbit</label>
+                  <label for="penerbit">Penerbit</label>
                   <div class="form-group">
                     <input
-                      id="judul"
-                      name="judul"
+                      value="Gramedia"
+                      id="penerbit"
+                      name="penerbit "
                       placeholder="Masukan Penerbit"
                       type="text"
                       class="form-control"
                     />
                   </div>
-                  <label for="judul">Tahun Terbit</label>
+                  <label for="tahun_terbit">Tahun Terbit</label>
                   <div class="form-group">
                     <input
-                      id="judul"
-                      name="judul"
+                      id="tahun_terbit"
+                      value="2014"
+                      name="tahun_terbit"
                       placeholder="Masukan Tahun Terbit"
                       type="text"
                       class="form-control"
                     />
                   </div>
-                  <label for="judul">Tanggal Terbit</label>
+                  <label for="tgl_terbit">Tanggal Terbit</label>
                   <div class="form-group">
                     <input
-                      id="judul"
-                      name="judul"
+                      id="tgl_terbit"
+                      value="14 Januari"
+                      name="tgl_terbit"
                       placeholder="Masukan Tanggal Terbit"
                       type="text"
                       class="form-control"
                     />
                   </div>
-                  <label for="judul">Halaman Buku</label>
+                  <label for="halaman">Halaman Buku</label>
                   <div class="form-group">
                     <input
-                      id="judul"
-                      name="judul"
+                      id="halaman"
+                      value="440"
+                      name="halaman"
                       placeholder="Masukan Jumlah Halaman"
                       type="text"
                       class="form-control"
                     />
                   </div>
                   <a class="mt-3" href="#">
-                    <button class="btn btn-primary mb-3">Simpan Data</button></a
+                    <button class="btn btn-success mb-3">Edit Data</button></a
                   >
                   <a href="../index.html"
                     ><button type="button" class="mb-3 btn btn-danger">
