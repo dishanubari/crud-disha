@@ -17,6 +17,5 @@ Program ini digunakan untuk memanage buku sesuai dengan judul, penulis, penerbit
 - Mengatur Database di folder config/database.php
 - Membuat Database dengan Table buku
 - Membuat Column : id, judul, penulis, penerbit, tahun_terbit, tgl_terbit, halaman
--
 
 Copyright Dishanubari 2021
